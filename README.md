@@ -1,4 +1,4 @@
-# 🎓 Poocho AI -  AI Admissions FAQ Assistant
+# 🎓 Pocho AI -  AI Admissions FAQ Assistant
 
 <p>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white">
