@@ -1,0 +1,161 @@
+{% extends "faq/base.html" %}
+{% block title %}Meridian State Admissions — About this project{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block dept_question %}
+  <a href="{% url 'faq:chat' %}?q={{ entry.question|urlencode }}">{{ entry.question }}</a>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .home { max-width: 900px; margin: 0 auto; padding: 56px 48px 72px; }
+
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; color: var(--oxblood); margin-bottom: 14px; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.12;
+    margin: 0 0 18px;
+    max-width: 11ch;
+  }
+  .hero .dek { font-size: 16.5px; line-height: 1.65; color: var(--muted); max-width: 62ch; margin-bottom: 30px; }
+  .hero .cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy); color: var(--cream);
+    padding: 13px 24px; border-radius: 8px;
+    text-decoration: none; font-size: 14.5px;
+    font-family: var(--font-body);
+  }
+  .btn-primary:hover { background: var(--navy-light); }
+  .cta-note { font-size: 12.5px; color: var(--muted); font-family: var(--font-mono); }
+
+  .divider-row { display: flex; align-items: center; gap: 14px; margin: 56px 0 30px; }
+  .divider-row .label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 2px; color: var(--oxblood); white-space: nowrap; }
+  .divider-row .rule { flex: 1; height: 1px; background: var(--line); }
+
+  /* How it works — a real sequence, so numbering earns its keep */
+  .steps { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+  .step { display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .step .num { font-family: var(--font-display); font-style: italic; font-size: 30px; color: var(--gold); flex-shrink: 0; width: 44px; }
+  .step h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+  .step p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); max-width: 58ch; }
+  .step code {
+    font-family: var(--font-mono); font-size: 12px;
+    background: var(--cream-card); border: 1px solid var(--line);
+    padding: 1px 6px; border-radius: 4px; color: var(--ink);
+  }
+
+  /* Stat strip */
+  .stat-strip { display: flex; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 6px; }
+  .stat-cell { flex: 1; padding: 20px 22px; background: var(--cream-card); }
+  .stat-cell + .stat-cell { border-left: 1px solid var(--line); }
+  .stat-cell .n { font-family: var(--font-display); font-size: 30px; font-weight: 600; color: var(--navy); line-height: 1; }
+  .stat-cell .l { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1px; color: var(--muted); margin-top: 8px; }
+
+  /* Category grid */
+  .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cat-card {
+    border: 1px solid var(--line);
+    background: var(--cream-card);
+    border-radius: 10px;
+    padding: 18px 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .cat-card h4 { font-family: var(--font-display); font-size: 15.5px; margin: 0 0 8px; }
+  .cat-card ul { margin: 0; padding: 0; list-style: none; }
+  .cat-card li { margin-bottom: 6px; }
+  .cat-card a {
+    font-size: 12.5px; color: var(--muted); text-decoration: none; line-height: 1.5;
+  }
+  .cat-card a:hover { color: var(--oxblood); }
+
+  .footnote { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  @media (max-width: 800px) {
+    .home { padding: 32px 24px 56px; }
+    .hero h1 { font-size: 32px; max-width: none; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .stat-strip { flex-direction: column; }
+    .stat-cell + .stat-cell { border-left: none; border-top: 1px solid var(--line); }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <main class="home">
+    <section class="hero">
+      <div class="hero-eyebrow">DEMO PROJECT · ADMISSIONS OFFICE</div>
+      <h1>An assistant that only says what's on file.</h1>
+      <p class="dek">
+        This is a retrieval-grounded FAQ assistant built for a fictional university's
+        admissions office. It answers deadline, fee, and requirement questions from a
+        fixed knowledge base — never inventing a date or a dollar figure — while still
+        being able to hold a normal conversation around the edges: greetings, thanks,
+        "what can you help with." Everything below is placeholder data for Meridian
+        State University.
+      </p>
+      <div class="cta-row">
+        <a class="btn-primary" href="{% url 'faq:chat' %}">Start a conversation →</a>
+        <span class="cta-note">no login required</span>
+      </div>
+    </section>
+
+    <div class="divider-row"><span class="label">HOW IT WORKS</span><div class="rule"></div></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div>
+          <h3>Match the question</h3>
+          <p>Your question is scored against every knowledge base entry using a blend of TF-IDF similarity and keyword overlap against curated paraphrases — tuned to avoid both generic-word over-matching and short-query misses.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div>
+          <h3>Ground the reply</h3>
+          <p>If the match clears the confidence threshold, the matched fact — and only that fact — is handed to Grok with instructions to phrase it naturally without adding anything. That's what keeps answers accurate instead of just plausible.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div>
+          <h3>Talk, or forward</h3>
+          <p>No confident match doesn't mean a dead end: small talk and general questions get a normal conversational reply. A genuine factual question with no match is forwarded to the admissions office instead of being guessed at.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-row"><span class="label">ON FILE</span><div class="rule"></div></div>
+
+    <div class="stat-strip">
+      <div class="stat-cell"><div class="n">{{ kb_count }}</div><div class="l">FAQ ENTRIES</div></div>
+      <div class="stat-cell"><div class="n">{{ category_count }}</div><div class="l">DEPARTMENTS</div></div>
+      <div class="stat-cell"><div class="n">50%</div><div class="l">MATCH THRESHOLD</div></div>
+    </div>
+
+    <div class="divider-row"><span class="label">BROWSE THE FILE</span><div class="rule"></div></div>
+
+    <div class="cat-grid">
+      {% for category, entries in categories.items %}
+        <div class="cat-card">
+          <h4>{{ category }}</h4>
+          <ul>
+            {% for entry in entries %}
+              <li><a href="{% url 'faq:chat' %}?q={{ entry.question|urlencode }}">{{ entry.question }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+    <p class="footnote">
+      All dates, fees, and requirements shown are fictional placeholder data for
+      "Meridian State University," used to demonstrate the retrieval + grounding
+      pattern above. Nothing here reflects a real institution.
+    </p>
+  </main>
+{% endblock %}
