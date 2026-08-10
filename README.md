@@ -9,11 +9,9 @@
   <img alt="Status" src="https://img.shields.io/badge/status-prototype-a8433a">
 </p>
 
-A retrieval-augmented FAQ assistant for a **fictional university's admissions
-office** — "Meridian State University." Built with **Django**, matched with
-**TF-IDF + keyword retrieval**, and phrased naturally by the **Grok (xAI)**
-API, with a graceful conversational fallback for anything that isn't a KB
-question.
+A Retrieval-Augmented Generation (RAG) FAQ assistant built for the fictional Meridian State University Admissions Office. The system retrieves relevant information from a curated university knowledge base using TF-IDF and keyword-based retrieval, then uses the Grok (xAI) API to generate natural, context-aware responses.
+
+The assistant is designed to handle common admissions questions such as programs, eligibility, application requirements, deadlines, fees, scholarships, and admission procedures. For questions outside the knowledge base, it provides a graceful conversational fallback instead of forcing an irrelevant retrieval-based answer.
 
 > All dates, fees, GPAs, and contact details in this repo are placeholder
 > data for demo purposes. Nothing reflects a real institution.
